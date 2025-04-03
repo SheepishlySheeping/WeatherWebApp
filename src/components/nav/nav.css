@@ -1,0 +1,107 @@
+button,
+input {
+    border: 0;
+    outline: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+* {
+    font-size: 1rem;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.Navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Navbar>div {
+    height: 3rem;
+    border-color: silver;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5%;
+}
+
+.SearchContainer {
+    display: flex;
+    width: 20rem;
+    overflow: hidden;
+}
+
+.SearchBar {
+    width: 80rem;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.SearchBar * {
+    background-color: whitesmoke;
+}
+
+.SearchBar input {
+    width: 100%;
+    height: 100%;
+    padding: 0 17% 0 5%
+}
+
+.SearchBar button {
+    background-image: url('../../assets/imgs/x.png');
+    background-size: auto;
+    width: 15%;
+    height: 70%;
+    position: absolute;
+    right: 0;
+}
+
+.SearchButton {
+    position: relative;
+    background-color: black;
+    flex: 1;
+    overflow: hidden;
+}
+
+.SearchButton::before, .SearchButton::after {
+    content: "";
+    position: absolute;
+}
+
+.SearchButton::after {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    filter: invert(100%);
+    background-image: url('../../assets/imgs/search.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+}
+
+.SearchButton::before {
+    top: -75%;
+    left: -200%;
+    transform-origin: center;
+    border-radius: 100%;
+    background-color: slategray;
+    height: 250%;
+    width: 200%;
+    transition: left 1s ease
+}
+
+.SearchButton:hover::before {
+    left: -80%;
+}
+
+.TimeContainer {
+    flex: 2;
+    background-color: orange;
+    background-image: url('../../assets/imgs/search.png');
+    background-repeat: no-repeat;
+}
