@@ -15,27 +15,32 @@ button:hover {
 }
 
 .Navbar {
+    height: 10%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    max-width: 100%;
+    overflow: hidden;
 }
 
-.Navbar>div {
-    height: 3rem;
+.Navbar > div {
+    width: 48%;
+    height: 75%;
+    display: flex;
+    overflow: visible;
+    justify-content: space-between;
+}
+
+.Border {
     border-color: silver;
     border-width: 1px;
     border-style: solid;
     border-radius: 5%;
 }
 
-.SearchContainer {
-    display: flex;
-    width: 20rem;
-    overflow: hidden;
-}
 
 .SearchBar {
-    width: 80rem;
+    width: 90%;
     display: flex;
     align-items: center;
     position: relative;
@@ -62,8 +67,8 @@ button:hover {
 
 .SearchButton {
     position: relative;
+    width: 10%;
     background-color: black;
-    flex: 1;
     overflow: hidden;
 }
 
@@ -89,7 +94,7 @@ button:hover {
     left: -200%;
     transform-origin: center;
     border-radius: 100%;
-    background-color: slategray;
+    background-color: gray;
     height: 250%;
     width: 200%;
     transition: left 1s ease
@@ -100,8 +105,77 @@ button:hover {
 }
 
 .TimeContainer {
-    flex: 2;
-    background-color: orange;
-    background-image: url('../../assets/imgs/search.png');
+    display: flex;
+    align-items: center;
+    width: 50%;
+    padding: 0 2.5%;
+    background-color: whitesmoke;
+}
+
+.ThemeChangeContainer {
+    overflow: hidden;
+    position: relative;
+    width: 35%;
+    position: relative;
+    background-color: whitesmoke;
+}
+
+.ThemeChangeContainer::before, .ThemeChangeContainer::after {
+    content: "";
+    position: absolute;
     background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    height: 100%;
+    width: 20%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ThemeChangeContainer::before {
+    background-image: url('../../assets/imgs/sun.png');
+    top: 0;
+    left: 0;
+}
+
+.ThemeChangeContainer::after {
+    background-image: url('../../assets/imgs/moon.png');
+    top: 0;
+    right: 0;
+}
+
+.ThemeChangeContainer button {
+    position: absolute;
+    top: -50%;
+    border-radius: 100%;
+    width: 75%;
+    height: 200%;
+    transition: left 1.5s ease;
+}
+
+.ThemeOverlay {
+    content: "";
+    z-index: 3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    background-color: white;
+    mix-blend-mode: difference;
+    pointer-events: none;
+    transition: scale 2s ease;
+}
+@media (orientation: portrait) {
+
+    .Navbar {
+        height: 20%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .Navbar > div {
+        width: 100%;
+        height: 46%;
+    }
 }
