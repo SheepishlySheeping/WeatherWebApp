@@ -1,0 +1,21 @@
+img {
+    position: absolute;
+    width: 3rem;
+    height: 3rem;   
+}
+
+.sun {
+    animation: spin 15s linear infinite;
+}
+
+.cloud {
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}

@@ -1,43 +1,18 @@
-button,
-input {
-    border: 0;
-    outline: none;
-}
-
-button:hover {
-    cursor: pointer;
-}
-
-* {
-    font-size: 1rem;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 .Navbar {
     height: 10%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     max-width: 100%;
-    overflow: hidden;
 }
 
 .Navbar > div {
     width: 48%;
     height: 75%;
     display: flex;
-    overflow: visible;
+    overflow: hidden;
     justify-content: space-between;
 }
-
-.Border {
-    border-color: silver;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 5%;
-}
-
 
 .SearchBar {
     width: 90%;
@@ -135,13 +110,13 @@ button:hover {
 .ThemeChangeContainer::before {
     background-image: url('../../assets/imgs/sun.png');
     top: 0;
-    left: 0;
+    left: 5%;
 }
 
 .ThemeChangeContainer::after {
     background-image: url('../../assets/imgs/moon.png');
     top: 0;
-    right: 0;
+    right: 5%;
 }
 
 .ThemeChangeContainer button {
@@ -172,6 +147,7 @@ button:hover {
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        margin-bottom: 2%;
     }
 
     .Navbar > div {
