@@ -1,0 +1,45 @@
+.Forecast {
+    position: relative;
+    padding: 1% 2.5%;
+    background-color: whitesmoke;
+}
+
+.Forecast > p {
+    font-size: 1.5rem;
+    padding-bottom: 1%;
+}
+
+.ForecastTable {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ForecastStat {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 1% 1%;
+    width: 15%;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.ForecastStat div {
+    display: flex;
+}
+
+.ForecastStat h1 {
+    font-size: 2rem;
+}
+
+@media (orientation: portrait) {
+
+    .ForecastTable {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ForecastStat {
+        margin-bottom: 5%;
+    }
+}

@@ -1,7 +1,8 @@
 .Table {
+    position: relative;
     width: 95%;
-    height: 88%;
     padding: 1% 2.5%;
+    margin: 3% 0;
     background-color: whitesmoke;
 }
 
@@ -22,7 +23,7 @@
 
 .TempArea {
     display: flex;
-    margin-top: 3%;
+    margin-top: 2%;
 }
 
 .TempArea h1 {
@@ -37,4 +38,37 @@
 
 .TempArea p {
     width: 100%;
+}
+
+.InfoArea {
+    display: grid;
+    margin-top: 2%;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 5rem;
+}
+
+.InfoBlock {
+    position: relative;
+    padding: 1% 2%;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    display: flex;
+}
+
+.InfoBlock p {
+    margin-left: 2%;
+}
+
+.InfoBlock h1 {
+    position: absolute;
+    right: 3%;
+}
+
+@media (orientation: portrait) {
+
+    .InfoArea {
+        grid-template-columns: 1fr;
+        margin-top: 5%;
+    }
 }

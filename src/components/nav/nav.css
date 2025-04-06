@@ -1,7 +1,7 @@
 .Navbar {
-    height: 10%;
+    height: 10vh;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: space-between;
     max-width: 100%;
 }
@@ -41,6 +41,7 @@
 }
 
 .SearchButton {
+    z-index: 6;
     position: relative;
     width: 10%;
     background-color: black;
@@ -82,20 +83,20 @@
 .TimeContainer {
     display: flex;
     align-items: center;
-    width: 50%;
+    width: 30%;
     padding: 0 2.5%;
     background-color: whitesmoke;
 }
 
-.ThemeChangeContainer {
+.SliderChanger {
     overflow: hidden;
     position: relative;
-    width: 35%;
+    width: 30%;
     position: relative;
     background-color: whitesmoke;
 }
 
-.ThemeChangeContainer::before, .ThemeChangeContainer::after {
+.SliderChanger::before, .SliderChanger::after {
     content: "";
     position: absolute;
     background-repeat: no-repeat;
@@ -107,19 +108,38 @@
     pointer-events: none;
 }
 
-.ThemeChangeContainer::before {
+.ThemeChanger:disabled {
+    cursor: not-allowed;
+}
+
+.ThemeChanger::before {
     background-image: url('../../assets/imgs/sun.png');
     top: 0;
     left: 5%;
 }
 
-.ThemeChangeContainer::after {
+.ThemeChanger::after {
     background-image: url('../../assets/imgs/moon.png');
     top: 0;
     right: 5%;
 }
 
-.ThemeChangeContainer button {
+.UnitChanger::before {
+    content: "C°";
+    font-size: 1.5rem;
+    top: 25%;
+    left: 5%;
+}
+
+.UnitChanger::after {
+    content: "F°";
+    font-size: 1.5rem;
+    top: 25%;
+    right: 5%;
+}
+
+.SliderChanger div {
+    z-index: 1;
     position: absolute;
     top: -50%;
     border-radius: 100%;
@@ -128,22 +148,10 @@
     transition: left 1.5s ease;
 }
 
-.ThemeOverlay {
-    content: "";
-    z-index: 3;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border-radius: 100%;
-    background-color: white;
-    mix-blend-mode: difference;
-    pointer-events: none;
-    transition: scale 2s ease;
-}
 @media (orientation: portrait) {
 
     .Navbar {
-        height: 20%;
+        height: 15vh;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
