@@ -1,12 +1,11 @@
 import { useThemeStore } from "../store/store"
-const theme = useThemeStore((state) => state.theme)
-const switching = useThemeStore((state) => state.switching)
-const setTheme = useThemeStore((state) => state.setTheme)
-const setSwitching = useThemeStore((state) => state.setSwtiching)
 
 export default async function switchTheme() {
+
+    const { theme, setTheme, setSwitching } = useThemeStore.getState();
+
     setTheme((theme === 'light') ? 'dark' : 'light')
     setSwitching(true)
-    await new Promise((r) => setTimeout(r, 500))
+    await new Promise((r) => setTimeout(r, 3000))
     setSwitching(false)
 }

@@ -17,8 +17,8 @@ export default function Forecast() {
             <Loader />
             <p>Forecast</p>
             <div className='ForecastTable'>
-                {forecastStats.map((stat) => (
-                    <div className='ForecastStat Border'>
+                {forecastStats.map((stat, index) => (
+                    <div className='ForecastStat Border' key={index}>
                         <div>
                             <h1>{stat.temp}</h1>
                             <img src={stat.icon} />

@@ -18,6 +18,7 @@ const miscStats = [
 
 export default function Table() {
 
+
     return (
         <div className='Table Border'>
             <Loader />
@@ -31,8 +32,8 @@ export default function Table() {
             </div>
             <p>Partly cloud, feels like +10° </p>
             <div className='InfoArea'>
-                {miscStats.map((stat) => (
-                    <div className='InfoBlock Border'>
+                {miscStats.map((stat, index) => (
+                    <div className='InfoBlock Border' key={index}>
                         <img src={stat.icon} />
                         <p>{stat.name}</p>   
                         <h1>{stat.value}</h1>
