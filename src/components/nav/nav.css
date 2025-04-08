@@ -92,7 +92,7 @@
     top: 100%;
     border-top: 0;
     overflow-y: auto;
-    z-index: 3;
+    z-index: 8;
 }
 
 .Option {

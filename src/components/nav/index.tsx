@@ -1,30 +1,29 @@
-import { use, useEffect, useState } from 'react';
-import './nav.css';
-import { useLoadingStore, useSearchStore, useThemeStore, useUnitStore } from '../../store/store';
-import switchTheme from '../../composables/switchTheme';
-import switchUnit from '../../composables/switchUnit';
-import getSuggestions from '../../services/getSuggestions';
+import { useEffect, useState } from 'react'
+import './nav.css'
+import { useLoadingStore, useSearchStore, useThemeStore, useUnitStore, useTimeStore } from '../../store/useStores'
+import { getTimeString } from '../../utils/timeConfig'
+import switchTheme from '../../utils/themeConfig'
+import switchUnit from '../../utils/unitConfig'
+import useFetchSuggestions from '../../services/useFetchSuggestions'
+import useFetchWeatherData from '../../services/useFetchWeatherData'
+
 
 export default function Navbar() {
-    const theme = useThemeStore((state) => state.theme)
-    const switching = useThemeStore((state) => state.switching)
-    const loading = useLoadingStore((state) => state.loading)
-    const useFahrenheit = useUnitStore((state) => state.useFahrenheit)
-    const { focus, setFocus } = useSearchStore()
+    const { theme, switching } = useThemeStore()
+    const { loading } = useLoadingStore()
+    const { useFahrenheit } = useUnitStore()
+    const { curTime } =useTimeStore()
+    const { focus, selected, setFocus, setSelected, setPrev } = useSearchStore()
 
-    const [searchInput, setSearchInput] = useState("");
-    const [debouncedInput, setDebouncedInput] = useState("");
+    const [searchInput, setSearchInput] = useState("")
 
+    const { data: locations = [] } = useFetchSuggestions(searchInput);
+    const { mutate: fetchWeather } = useFetchWeatherData();
+
+    const { lat, lon } = selected;
     useEffect(() => {
-        const handler = setTimeout(() => {
-            setDebouncedInput(searchInput)}, 300)
-
-        return () => {
-            clearTimeout(handler)
-        }
-        }, [searchInput])
-
-    const { data: locations = [] } = getSuggestions(debouncedInput);
+        fetchWeather({ lat, lon })
+    }, [])
 
     return (
         <div className='Navbar'>
@@ -45,16 +44,33 @@ export default function Navbar() {
                         <button onClick={() => setSearchInput("")} />
                     )}
                 </div>
-                <button className='SearchButton' />
+                <button 
+                    className='SearchButton'
+                    onClick={() => {
+                        setSearchInput(`${selected.name}, ${selected.country}`)
+                        setPrev(selected)
+                        fetchWeather({lat: selected.lat, lon: selected.lon})
+                    }}   
+                    disabled={loading} 
+                />
                 {(focus) && (<div className='SearchOptions Border' >
-                    {locations.map((location, index) => (
-                        <button className='Option Border' key={index}>{location.name}, {location.country}</button>
+                    {locations.map((location) => (
+                        <button 
+                            className='Option Border' 
+                            key={`${location.name}-${location.country}`}
+                            onClick={() => {
+                                setSearchInput(`${location.name}, ${location.country}`)
+                                setSelected(location)
+                            }}
+                        >
+                            {location.name}, {location.country}
+                        </button>
                     ))}
                 </div>)}
             </div>
             <div>
                 <div className='TimeContainer Border'>
-                    <p>curtime</p>
+                    <p>Local time: {getTimeString(curTime)}</p>
                 </div>
                 <button 
                     className='SliderChanger UnitChanger Border' 

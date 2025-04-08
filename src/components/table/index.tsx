@@ -6,37 +6,44 @@ import cloudyIcon from '../../assets/imgs/cloud.png'
 import visibilityIcon from '../../assets/imgs/visibility.png'
 import pressureIcon from '../../assets/imgs/pressure.png'
 import humidityIcon from '../../assets/imgs/humidity.png'
+import { useSearchStore, useWeatherStore, useTimeStore } from '../../store/useStores'
+import { getTimeString, convertTime } from '../../utils/timeConfig'
 
-const miscStats = [
-    {name: "Pressure", icon: pressureIcon, value: "sdsaddddddddddddddddads"}, 
-    {name: "Humidity", icon: humidityIcon, value: ""},
-    {name: "Wind speed", icon: windSpdIcon, value: ""},
-    {name: "Wind gust", icon: windGstIcon, value: ""},
-    {name: "Cloudiness", icon: cloudyIcon, value: ""},
-    {name: "Visibility", icon: visibilityIcon, value: ""}
-]
+
 
 export default function Table() {
+
+    const { weatherData } = useWeatherStore()
+    const { prev } = useSearchStore()
+    const { curTime } = useTimeStore()
+    const stats = [
+    {name: "Pressure", icon: pressureIcon, value: weatherData?.main.pressure, unit: "hPa"}, 
+    {name: "Humidity", icon: humidityIcon, value: weatherData?.main.humidity, unit: "%"},
+    {name: "Wind speed", icon: windSpdIcon, value: weatherData?.wind.speed, unit: "m/s"},
+    {name: "Wind gust", icon: windGstIcon, value: weatherData?.wind.gust, unit: "m/s"},
+    {name: "Cloudiness", icon: cloudyIcon, value: weatherData?.clouds.all, unit: "%"},
+    {name: "Visibility", icon: visibilityIcon, value: weatherData?.visibility, unit: "m"}
+]
 
 
     return (
         <div className='Table Border'>
             <Loader />
             <div className='NameArea'>
-                <h1>HaNoi, Vietnam</h1>
-                <p>12:00</p>
+                <h1>{prev.name}, {prev.country}</h1>
+                <p>{getTimeString(convertTime(curTime, weatherData?.timezone))}</p>
             </div>
             <div className='TempArea'>
-                <h1>+12°</h1>
-                <div></div>   
+                <h1>{weatherData?.main.temp}°</h1>
+                <div style={{backgroundImage: `url(https://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png)`}} />  
             </div>
-            <p>Partly cloud, feels like +10° </p>
+            <p>{weatherData?.weather[0].description}, feels like {weatherData?.main.feels_like}°</p>
             <div className='InfoArea'>
-                {miscStats.map((stat, index) => (
+                {stats.map((stat, index) => (
                     <div className='InfoBlock Border' key={index}>
                         <img src={stat.icon} />
                         <p>{stat.name}</p>   
-                        <h1>{stat.value}</h1>
+                        <h1>{stat.value} {stat.unit}</h1>
                     </div>
                 ))}
             </div>

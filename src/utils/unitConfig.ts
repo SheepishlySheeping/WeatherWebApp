@@ -1,4 +1,4 @@
-import { useLoadingStore, useUnitStore } from "../store/store"
+import { useLoadingStore, useUnitStore } from "../store/useStores"
 
 export default async function switchUnit() {
     

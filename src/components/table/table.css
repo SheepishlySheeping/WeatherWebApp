@@ -23,7 +23,7 @@
 
 .TempArea {
     display: flex;
-    margin-top: 2%;
+    margin: 2% 0;
 }
 
 .TempArea h1 {
@@ -34,10 +34,9 @@
 .TempArea div {
     position: relative;
     width: 5rem;
-}
-
-.TempArea p {
-    width: 100%;
+    background-color: skyblue;
+    border-radius: 6px;
+    z-index: 6;
 }
 
 .InfoArea {
