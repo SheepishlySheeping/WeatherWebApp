@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { WeatherData } from '../types/weatherdata'
+import { WeatherData, ForecastData, ForecastList } from '../types/weatherdata'
 import { LocationData } from '../types/locationdata'
 
 type ThemeState = {
@@ -31,7 +31,11 @@ type SearchState = {
 type WeatherStore = {
     weatherData: WeatherData | null
     setWeatherData: (data: WeatherData) => void
-    clearWeatherData: () => void
+}
+
+type ForecastStore = {
+    forecastList: ForecastList | null
+    setForecastList: (data: ForecastList) => void
 }
 
 type TimeStore = {
@@ -81,7 +85,11 @@ export const useSearchStore = create<SearchState>((set) => ({
 export const useWeatherStore = create<WeatherStore>((set) => ({
     weatherData: null,
     setWeatherData: (data) => set({ weatherData: data }),
-    clearWeatherData: () => set({ weatherData: null })
+}))
+
+export const useForecastStore = create<ForecastStore>((set) => ({
+    forecastList: null,
+    setForecastList: (data) => set({ forecastList: data })
 }))
 
 export const useTimeStore = create<TimeStore>((set) => ({

@@ -6,6 +6,7 @@ import switchTheme from '../../utils/themeConfig'
 import switchUnit from '../../utils/unitConfig'
 import useFetchSuggestions from '../../services/useFetchSuggestions'
 import useFetchWeatherData from '../../services/useFetchWeatherData'
+import useFetchForecastData from '../../services/useFetchForecast'
 
 
 export default function Navbar() {
@@ -19,10 +20,12 @@ export default function Navbar() {
 
     const { data: locations = [] } = useFetchSuggestions(searchInput);
     const { mutate: fetchWeather } = useFetchWeatherData();
+    const { mutate: fetchForecast } = useFetchForecastData();
 
     const { lat, lon } = selected;
     useEffect(() => {
         fetchWeather({ lat, lon })
+        fetchForecast({ lat, lon })
     }, [])
 
     return (
@@ -48,16 +51,17 @@ export default function Navbar() {
                     className='SearchButton'
                     onClick={() => {
                         setSearchInput(`${selected.name}, ${selected.country}`)
-                        setPrev(selected)
                         fetchWeather({lat: selected.lat, lon: selected.lon})
+                        fetchForecast({lat: selected.lat, lon: selected.lon})
+                        setPrev(selected)
                     }}   
                     disabled={loading} 
                 />
                 {(focus) && (<div className='SearchOptions Border' >
-                    {locations.map((location) => (
+                    {locations.map((location, index) => (
                         <button 
                             className='Option Border' 
-                            key={`${location.name}-${location.country}`}
+                            key={`${location.name}-${location.country}-${index}`}
                             onClick={() => {
                                 setSearchInput(`${location.name}, ${location.country}`)
                                 setSelected(location)

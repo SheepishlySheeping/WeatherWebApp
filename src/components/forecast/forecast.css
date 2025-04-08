@@ -24,8 +24,11 @@
     border-bottom: 0;
 }
 
-.ForecastStat div {
-    display: flex;
+.ForecastStat img {
+    border-radius: 6px;
+    width: 4rem;
+    z-index: 6;
+    background-color: skyblue;
 }
 
 .ForecastStat h1 {
@@ -40,6 +43,7 @@
     }
 
     .ForecastStat {
+        width: 50%;
         margin-bottom: 5%;
     }
 }

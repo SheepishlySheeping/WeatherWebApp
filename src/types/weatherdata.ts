@@ -28,3 +28,13 @@ export type WeatherData = {
     visibility: number;
     timezone: number;
 };
+
+export type ForecastData = {
+    dt: number;
+    weather: Weather[];
+    main: Main;
+};
+
+export type ForecastList = {
+    list: ForecastData[]
+}
