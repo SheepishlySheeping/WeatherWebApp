@@ -1,9 +1,10 @@
 import './forecast.css';
 import Loader from '../loader';
+import { ForecastStat } from '../../types/statdata';
 import { useForecastStore } from '../../store/useStores'
 import { getTimeString } from '../../utils/timeConfig'
 
-function timeShow (dt : number | undefined) {
+function timeShow (dt : number | undefined): string | undefined {
     if (dt === undefined) return
     return getTimeString(new Date(dt * 1000))
 }
@@ -12,7 +13,7 @@ export default function Forecast() {
 
     const { forecastList } = useForecastStore()
 
-    const forecastStats = [
+    const forecastStats : ForecastStat[] = [
         { time: forecastList?.list[0].dt, value: forecastList?.list[0].main.temp },
         { time: forecastList?.list[1].dt, value: forecastList?.list[1].main.temp },
         { time: forecastList?.list[2].dt, value: forecastList?.list[2].main.temp },

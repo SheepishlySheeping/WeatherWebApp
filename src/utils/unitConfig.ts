@@ -1,4 +1,4 @@
-import { useLoadingStore, useUnitStore, useWeatherStore, useForecastStore } from "../store/useStores"
+import { useScreenStore, useUnitStore, useWeatherStore, useForecastStore } from "../store/useStores"
 import { ForecastData, ForecastList } from "../types/weatherdata"
 
 function toC(f: number ) { 
@@ -11,9 +11,9 @@ function toF(c: number) {
     return parseFloat(temp.toFixed(2))
 }
 
-export default async function switchUnit() {
+export default async function switchUnit(): Promise<void> {
     
-    const { setLoading } = useLoadingStore.getState();
+    const { setLoading } = useScreenStore.getState();
     const { useFahrenheit, setUseFahrenheit } = useUnitStore.getState()
     const { weatherData, setWeatherData } = useWeatherStore.getState()
     const { forecastList, setForecastList } = useForecastStore.getState()

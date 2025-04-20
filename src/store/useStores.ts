@@ -9,9 +9,11 @@ type ThemeState = {
     setSwitching: (state: boolean) => void
 }
 
-type LoadingState = {
+type ScreenState = {
     loading: boolean
+    error: boolean
     setLoading: (state: boolean) => void
+    setError: (state: boolean) => void
 }
 
 type UnitState = {
@@ -53,9 +55,11 @@ export const useThemeStore = create<ThemeState>((set) => ({
     setSwitching: (state) => set ({ switching: state })
 }))
 
-export const useLoadingStore = create<LoadingState>((set) => ({
+export const useScreenStore = create<ScreenState>((set) => ({
     loading: false,
-    setLoading: (state) => set ({ loading: state })
+    error: false,
+    setLoading: (state) => set ({ loading: state }),
+    setError: (state) => set ({ error: state })
 }))
 
 export const useUnitStore = create<UnitState>((set) => ({

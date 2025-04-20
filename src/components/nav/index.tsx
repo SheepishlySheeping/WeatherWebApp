@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './nav.css'
-import { useLoadingStore, useSearchStore, useThemeStore, useUnitStore, useTimeStore } from '../../store/useStores'
+import { useScreenStore, useSearchStore, useThemeStore, useUnitStore, useTimeStore } from '../../store/useStores'
 import { getTimeString } from '../../utils/timeConfig'
 import switchTheme from '../../utils/themeConfig'
 import switchUnit from '../../utils/unitConfig'
@@ -11,7 +11,7 @@ import useFetchForecastData from '../../services/useFetchForecast'
 
 export default function Navbar() {
     const { theme, switching } = useThemeStore()
-    const { loading } = useLoadingStore()
+    const { loading } = useScreenStore()
     const { useFahrenheit } = useUnitStore()
     const { curTime } =useTimeStore()
     const { focus, selected, setFocus, setSelected, setPrev } = useSearchStore()

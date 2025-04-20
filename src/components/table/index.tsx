@@ -6,6 +6,7 @@ import cloudyIcon from '../../assets/imgs/cloud.png'
 import visibilityIcon from '../../assets/imgs/visibility.png'
 import pressureIcon from '../../assets/imgs/pressure.png'
 import humidityIcon from '../../assets/imgs/humidity.png'
+import { Stat } from '../../types/statdata'
 import { useSearchStore, useWeatherStore, useTimeStore } from '../../store/useStores'
 import { getTimeString, convertTime } from '../../utils/timeConfig'
 
@@ -16,7 +17,7 @@ export default function Table() {
     const { weatherData } = useWeatherStore()
     const { prev } = useSearchStore()
     const { curTime } = useTimeStore()
-    const stats = [
+    const stats : Stat[] = [
     {name: "Pressure", icon: pressureIcon, value: weatherData?.main.pressure, unit: "hPa"}, 
     {name: "Humidity", icon: humidityIcon, value: weatherData?.main.humidity, unit: "%"},
     {name: "Wind speed", icon: windSpdIcon, value: weatherData?.wind.speed, unit: "m/s"},

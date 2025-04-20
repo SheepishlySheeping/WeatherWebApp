@@ -1,12 +1,12 @@
 import { useMutation } from "@tanstack/react-query"
 import { WeatherData } from "../types/weatherdata"
-import { useWeatherStore, useLoadingStore, useUnitStore } from "../store/useStores"
+import { useWeatherStore, useScreenStore, useUnitStore } from "../store/useStores"
 
 const KEY = import.meta.env.VITE_API_KEY
 
 export default function useFetchWeatherData() {
     const { setWeatherData } = useWeatherStore()
-    const { setLoading } = useLoadingStore()
+    const { setLoading } = useScreenStore()
     const { useFahrenheit } = useUnitStore()
     const unit = (useFahrenheit) ? 'imperial' : 'metric'
 
